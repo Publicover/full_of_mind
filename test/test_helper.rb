@@ -23,7 +23,7 @@ class ActiveSupport::TestCase
     JsonWebToken.encode({ user_id: user_id }, (Time.now.to_i - 10))
   end
 
-  def valid_headers
+  def valid_headers(user_id)
     {
       "Authorization" => token_generator(user_id),
       "Content-Type" => "application/json"

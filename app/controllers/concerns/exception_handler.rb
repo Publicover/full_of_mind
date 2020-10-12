@@ -23,6 +23,6 @@ module ExceptionHandler
     end
 
     def unauthorized_request(e)
-      json_response({ message: e.message }, :unautorized)
+      json_response({ message: e.message }, :unauthorized)
     end
 end
