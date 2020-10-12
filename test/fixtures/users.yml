@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: Jim
+  last_name: Pub
+  password_digest: Testing
+  email: jim@home.com
+
+two:
+  first_name: Mike
+  last_name: Pub
+  password_digest: Testing
+  email: mike@home.com
