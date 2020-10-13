@@ -18,11 +18,15 @@ module ExceptionHandler
 
   private
 
+    # rubocop:disable Naming/MethodParameterName
     def four_twenty_two(e)
       json_response({ message: e.message }, :unprocessable_entity)
     end
+    # rubocop:enable Naming/MethodParameterName
 
+    # rubocop:disable Naming/MethodParameterName
     def unauthorized_request(e)
       json_response({ message: e.message }, :unauthorized)
     end
+  # rubocop:enable Naming/MethodParameterName
 end
