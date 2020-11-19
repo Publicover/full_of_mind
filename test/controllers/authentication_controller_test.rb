@@ -17,4 +17,11 @@ class AuthenticationControllerTest < ActionDispatch::IntegrationTest
     post auth_login_path, headers: @headers, params: @invalid_creds
     assert_match json['message'], Message.invalid_credentials
   end
+
+  test 'user can sign up' do
+    assert_difference('User.count') do
+      post signup_path,
+           params: { email: 'jim@test.com', first_name: 'Tester', last_name: 'McGee', password: 'testingtesting' }
+    end
+  end
 end
