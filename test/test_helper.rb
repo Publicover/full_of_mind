@@ -38,6 +38,33 @@ class ActiveSupport::TestCase
       "Content-Type" => "application/json"
     }
   end
+
+  def login_with_feelings
+    # @user = User.create(first_name: 'jim', last_name: 'pub', email: 'jim@home.com', password: 'testingpassword')
+    # puts "-------@user.inspect: #{@user.inspect}-------"
+    # @headers = valid_headers(@user.id).except('Authorization')
+    # puts @headers.inspect
+    # @valid_creds = { email: @user.email, password: @user.password }.to_json
+    # post auth_login_path, headers: @headers, params: @valid_creds
+    # # byebug
+    # puts '----------'
+    # puts json
+    # puts '----------'
+    # @headers['Authorization'] = json['Authorization']
+    # # puts @headers.reload.inspect
+    # puts "MADE IT"
+    # # order = 1
+    # # 4.times do
+    # #   Feeling.create!(body: Faker::Hacker.say_something_smart, user_id: @user.id, page_order: order)
+    # #   order += 1
+    # # end
+    @user = User.create(email: 'jim@home.com', first_name: 'Jim', last_name: 'Pub', password: 'password')
+    @headers = valid_headers(@user.id).except('Authorization')
+    @valid_creds = { email: @user.email, password: @user.password }.to_json
+    post auth_login_path, headers: @headers, params: @valid_creds
+    @headers['Authorization'] = json['auth_token']
+
+  end
 end
 
 class ActionDispatch::IntegrationTest
