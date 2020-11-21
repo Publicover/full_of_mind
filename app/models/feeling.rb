@@ -5,4 +5,8 @@ class Feeling < ApplicationRecord
     old: 0,
     current: 1
   }
+
+  def check_page_orders
+    ids = user.get_feelings_order
+  end
 end

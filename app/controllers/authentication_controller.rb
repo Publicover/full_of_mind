@@ -6,7 +6,7 @@ class AuthenticationController < ApplicationController
   def authenticate
     # byebug
     auth_token = AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
-    json_response(auth_token: auth_token)
+    json_response(auth_token: auth_token, user: User.find_by(email: auth_params[:email]))
   end
 
   private

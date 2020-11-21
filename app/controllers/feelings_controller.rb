@@ -16,6 +16,8 @@ class FeelingsController < ApplicationController
 
   def update
     json_response(@feeling, :ok) if @feeling.update(feelings_params)
+    # if user chooses to discard a feeling, update page_order 
+      # on each feeling
   end
 
   def destroy

@@ -2,9 +2,7 @@ require 'test_helper'
 
 class FeelingsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    # login_with_feelings
     @user = User.create(email: 'jim@home.com', first_name: 'Jim', last_name: 'Pub', password: 'password')
-    # @headers = valid_headers(@user.id)
     @headers = {
       "Content-Type"=>"application/json",
       "Accept"=>"application/json",
@@ -27,12 +25,6 @@ class FeelingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    # puts '-----------'
-    # puts "@headers: #{@headers}"
-    # puts '-----------'
-    # puts "json: #{json}"
-    # puts '-----------'
-
     get user_feelings_path(@user), headers: @headers
     assert_response :success
   end
@@ -52,6 +44,21 @@ class FeelingsControllerTest < ActionDispatch::IntegrationTest
   test "should get destroy" do
     get user_feeling_path(@user, @user.feelings.first), headers: @headers
     assert_response :success
+  end
+
+  test "new feeling should persist" do
+    assert @user.feelings.last.current?
+  end
+
+  test "old feeling should not persist" do
+    order_num = 1
+    5.times do
+      @user.feelings.create!(
+        body: Faker::Games::Witcher.quote, user_id: @user.id, page_order: order_num
+      )
+      order_num += 1
+    end
+    
   end
 
 end
