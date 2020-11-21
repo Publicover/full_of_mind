@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AuthenticationControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.create(email: 'jim@home.com', first_name: 'Jim', last_name: 'Pub', password: 'password')
+    @user = User.create(email: 'jim@home.com', first_name: 'Jim', last_name: 'Pub', password: 'password', onboarding_complete: true)
     @headers = valid_headers(@user.id).except('Authorization')
     @valid_creds = { email: @user.email, password: @user.password }.to_json
     @invalid_creds = { email: Faker::Internet.email, password: Faker::Internet.password }.to_json

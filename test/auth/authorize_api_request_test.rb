@@ -17,7 +17,6 @@ class AuthorizeApiRequestApiTest < ActionDispatch::IntegrationTest
     assert_raises ExceptionHandler::MissingToken do
       result = invalid_request_object.call
     end
-
   end
 
   test 'call with invalid request invalid token' do

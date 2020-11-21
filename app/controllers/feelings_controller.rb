@@ -1,4 +1,5 @@
 class FeelingsController < ApplicationController
+  before_action :check_user_onboarding
   before_action :set_user
   before_action :set_feeling, only: %i[show update destroy]
 
@@ -16,8 +17,8 @@ class FeelingsController < ApplicationController
 
   def update
     json_response(@feeling, :ok) if @feeling.update(feelings_params)
-    # if user chooses to discard a feeling, update page_order 
-      # on each feeling
+    # if user chooses to discard a feeling, update page_order
+    # on each feeling
   end
 
   def destroy

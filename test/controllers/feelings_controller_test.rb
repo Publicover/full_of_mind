@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FeelingsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.create(email: 'jim@home.com', first_name: 'Jim', last_name: 'Pub', password: 'password')
+    @user = User.create(email: 'jim@home.com', first_name: 'Jim', last_name: 'Pub', password: 'password', onboarding_complete: true)
     @headers = {
       "Content-Type"=>"application/json",
       "Accept"=>"application/json",
@@ -10,13 +10,12 @@ class FeelingsControllerTest < ActionDispatch::IntegrationTest
     }
     @valid_creds = { email: @user.email, password: @user.password }.to_json
     post auth_login_path, headers: @headers, params: @valid_creds
-    # @headers['Authorization'] = json['auth_token']
+
     order = 1
     4.times do
       Feeling.create!(body: Faker::Hacker.say_something_smart, user_id: @user.id, page_order: order)
       order += 1
     end
-
   end
 
   test 'fixtures should work' do
@@ -58,7 +57,7 @@ class FeelingsControllerTest < ActionDispatch::IntegrationTest
       )
       order_num += 1
     end
-    
+
   end
 
 end
